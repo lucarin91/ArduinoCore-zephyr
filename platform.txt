@@ -274,7 +274,7 @@ tools.remoteocd.upload.pattern="{path}/{cmd}" upload --adb-path "{runtime.tools.
 tools.remoteocd.bootloader.params.verbose=--verbose
 tools.remoteocd.bootloader.params.quiet=
 tools.remoteocd.erase.pattern=
-tools.remoteocd.bootloader.pattern="{path}/{cmd}" upload --adb-path "{runtime.tools.adb.path}/adb" -s "{upload.port.properties.serialNumber}" -f "{build.variant.path}/{openocd_cfg}" "{upload.verbose}" "{runtime.platform.path}/firmwares/{bootloader.file}" 
+tools.remoteocd.bootloader.pattern="{path}/{cmd}" upload --adb-path "{runtime.tools.adb.path}/adb" -s "{upload.port.properties.serialNumber}" -f "{build.variant.path}/flash_bootloader.cfg" "{upload.verbose}" "{runtime.platform.path}/firmwares/{bootloader.file}" 
 
 tools.remoteocd_network.upload.protocol=network
 tools.remoteocd_network.upload.field.password=Password
