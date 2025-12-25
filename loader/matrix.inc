@@ -200,12 +200,3 @@ void matrixEnd() {
     counter_stop(counter_dev);
 }
 
-
-void matrixPlay(const uint8_t* buf, uint32_t len) {
-    int i = 0;
-    while (i < (len / 104)) {
-		matrixGrayscaleWrite(&buf[i*104]);
-		i++;
-		k_msleep(16);
-    }
-}

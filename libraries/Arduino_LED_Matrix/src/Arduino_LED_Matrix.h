@@ -1,10 +1,10 @@
+
 #include <Arduino.h>
 #include <cmsis_core.h>
 
 extern "C" {
 void matrixBegin(void);
 void matrixEnd(void);
-void matrixPlay(const uint8_t *buf, uint32_t len);
 void matrixSetGrayscaleBits(uint8_t _max);
 void matrixGrayscaleWrite(const uint8_t *buf);
 void matrixWrite(const uint32_t *buf);
@@ -30,6 +30,7 @@ static inline uint32_t reverse(uint32_t x) {
 
 // TODO: this is dangerous, use with care
 #define loadSequence(frames)                loadWrapper(frames, sizeof(frames))
+#define playAnimation(frames, interval)     playAnimationWrapper(frames, sizeof(frames), interval)
 #define renderBitmap(bitmap, rows, columns) loadPixels(&bitmap[0][0], rows *columns)
 #define endTextAnimation(scrollDirection, anim)                                                    \
 	endTextToAnimationBuffer(scrollDirection, anim##_buf, sizeof(anim##_buf), anim##_buf_used)
@@ -74,7 +75,16 @@ public:
 
 	// Plays a video sequence, in grayscale.
 	void playVideo(const uint8_t *buf, uint32_t len) {
-		matrixPlay(buf, len);
+		playAnimationWrapper(buf, len, 16);
+	}
+
+	void playAnimationWrapper(const uint8_t* buf, uint32_t len, uint32_t interval) {
+		int i = 0;
+		while (i < (len / 104)) {
+			matrixGrayscaleWrite(&buf[i*104]);
+			i++;
+			delay(interval);
+		}
 	}
 
 	// Draws a grayscale picture.
