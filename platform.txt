@@ -276,7 +276,7 @@ tools.remoteocd.path={runtime.tools.remoteocd.path}
 tools.remoteocd.cmd=remoteocd
 tools.remoteocd.upload.params.verbose=--verbose
 tools.remoteocd.upload.params.quiet=
-tools.remoteocd.upload.pattern="{path}/{cmd}" upload --adb-path "{runtime.tools.adb.path}/adb" -s "{upload.port.properties.serialNumber}" -f "{build.variant.path}/{openocd_cfg}" "{upload.verbose}" "{build.path}/{build.project_name}.{upload.extension}" "{runtime.platform.path}/firmwares/{bootloader.file}"
+tools.remoteocd.upload.pattern="{path}/{cmd}" upload --adb-path "{runtime.tools.adb.path}/adb" -s "{upload.port.properties.serialNumber}" -f "{build.variant.path}/{openocd_cfg}" "{upload.verbose}" "{runtime.platform.path}/firmwares/{bootloader.file}" "{build.path}/{build.project_name}.{upload.extension}"
 
 tools.remoteocd.bootloader.params.verbose=--verbose
 tools.remoteocd.bootloader.params.quiet=
